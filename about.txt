@@ -1,5 +1,3 @@
 Title: About
 
-Write a few lines here about who you are and what this site is for.
-
-This page comes from the file *about.txt*, which sits next to index.html.
+This is my writing archive.
