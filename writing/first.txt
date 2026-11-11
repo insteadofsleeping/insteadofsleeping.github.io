@@ -1,0 +1,5 @@
+Title: First
+Date: 2026-11-10
+Category: Notes
+
+This is the first thing on this site.
