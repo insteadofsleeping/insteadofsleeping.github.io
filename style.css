@@ -1,15 +1,13 @@
-/* Instead of Sleeping
-   Colors live here. Change a value once and the whole site follows. */
 :root {
-  --sage: #C8D3B8;        /* page background */
-  --ink: #2B3320;         /* main text, deep olive */
-  --olive: #4A5438;       /* quieter text */
-  --rule: #75845F;        /* lines and dots */
-  --violet: #574371;      /* the featured block, blue-leaning purple */
-  --violet-text: #574371; /* purple used for links on sage */
-  --orchid: #7A3F6C;      /* the pinker purple: categories and small details */
-  --on-violet-pink: #EBCDE3; /* pink-lilac details on the featured block */
-  --on-violet: #F3F0FA;   /* text on the featured block */
+  --sage: #C8D3B8;
+  --ink: #2B3320;
+  --olive: #4A5438;
+  --rule: #75845F;
+  --violet: #574371;
+  --violet-text: #574371;
+  --orchid: #7A3F6C;
+  --on-violet-pink: #EBCDE3;
+  --on-violet: #F3F0FA;
   --on-violet-soft: #D9D3EC;
 
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
@@ -43,7 +41,6 @@ a:hover { color: var(--orchid); }
 
 main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
 
-/* ---------- top ---------- */
 .top {
   display: flex;
   flex-wrap: wrap;
@@ -62,10 +59,7 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
   color: var(--ink);
   text-decoration: none;
 }
-.nav { display: flex; gap: 1.2rem; font-family: var(--mono); font-size: .9rem; }
-.nav a { padding: .35rem 0; }
 
-/* ---------- small typewriter text ---------- */
 .mono {
   font-family: var(--mono);
   font-size: .86rem;
@@ -75,13 +69,11 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
 .status { font-family: var(--mono); font-size: .9rem; color: var(--olive); margin: 0; }
 .status + .status { margin-top: .6rem; }
 
-/* ---------- categories ---------- */
 .cats { display: flex; flex-wrap: wrap; gap: .2rem 1.3rem; font-size: .92rem; }
 .cats a { padding: .4rem 0; color: var(--ink); text-decoration: none; border-bottom: 2px solid transparent; }
 .cats a:hover { color: var(--orchid); }
 .cats a.on { color: var(--orchid); font-weight: 700; border-bottom-color: var(--orchid); }
 
-/* ---------- latest piece ---------- */
 .latest {
   display: flex;
   flex-direction: column;
@@ -106,7 +98,6 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
 .latest p { margin: 0; font-size: 1.05rem; line-height: 1.5; overflow-wrap: anywhere; }
 .latest .more { font-family: var(--mono); font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
 
-/* ---------- the plain index ---------- */
 .index { display: flex; flex-direction: column; gap: .2rem; }
 .index-head { color: var(--olive); margin: 0 0 .5rem; }
 .index ul { list-style: none; margin: 0; padding: 0; }
@@ -128,7 +119,6 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
 .index .dots { flex: 1 1 1.5rem; min-width: 1.5rem; border-bottom: 2px dotted var(--rule); transform: translateY(-.3em); }
 .index .m { color: var(--orchid); white-space: nowrap; }
 
-/* ---------- reading a piece ---------- */
 .piece { display: flex; flex-direction: column; gap: 1.1rem; }
 .back { font-family: var(--mono); font-size: .9rem; align-self: flex-start; padding: .3rem 0; }
 .piece .mono { color: var(--orchid); margin: 0; }
@@ -157,16 +147,6 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
 }
 .around a { max-width: 100%; overflow-wrap: anywhere; padding: .3rem 0; }
 
-/* ---------- bottom ---------- */
-.foot {
-  border-top: 1px solid var(--rule);
-  padding-top: 1rem;
-  font-family: var(--mono);
-  font-size: .82rem;
-  color: var(--olive);
-}
-
-/* ---------- phones ---------- */
 @media (max-width: 560px) {
   body { font-size: 18px; }
   .index li a { flex-direction: column; gap: .1rem; padding: .7rem 0; border-bottom: 2px dotted var(--rule); }

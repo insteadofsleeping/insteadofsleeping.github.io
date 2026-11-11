@@ -1,6 +1,3 @@
-/* Instead of Sleeping
-   Reads writing/list.txt, loads each piece named there, and draws the site.
-   You should not need to edit this file to add writing. */
 (function () {
   "use strict";
 
@@ -9,10 +6,8 @@
   var siteName = document.title;
   var pieces = [];     // newest first
   var missing = [];    // names in list.txt that could not be loaded
-  var about = null;
   var ready = false;
 
-  /* ---------- small helpers ---------- */
   function el(tag, cls, text) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -48,15 +43,6 @@
       : { year: "numeric", month: "short", day: "numeric" });
   }
 
-  /* A piece file looks like:
-       Title: What the kettle knows
-       Date: 2026-11-10
-       Category: Poems
-       Label: Sonnet
-       (blank line)
-       The writing itself…
-     The top lines are optional. Category is one of your main sections;
-     Label is a finer description, if you want one. */
   function parsePiece(slug, raw) {
     var text = raw.replace(/^﻿/, "").replace(/\r\n?/g, "\n");
     var lines = text.split("\n");
@@ -91,7 +77,6 @@
     return bits.join(" · ");
   }
 
-  /* **bold** and *italic*, built as real elements (never as raw HTML) */
   function addInline(parent, text) {
     var re = /(\*\*[^*\n]+\*\*|\*[^*\n]+\*)/g;
     var last = 0, m;
@@ -115,7 +100,6 @@
     return box;
   }
 
-  /* ---------- categories ---------- */
   function catSlug(name) {
     return "in-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   }
@@ -146,7 +130,6 @@
     return nav;
   }
 
-  /* ---------- pages ---------- */
   function drawHome(cat) {
     var all = pieces;
     var pieces_ = cat ? all.filter(function (p) { return p.category && catSlug(p.category) === cat.slug; }) : all;
@@ -209,23 +192,11 @@
     main.replaceChildren(art);
   }
 
-  function drawAbout() {
-    document.title = "About · " + siteName;
-    var art = el("article", "piece");
-    var back = el("a", "back", "← all writing");
-    back.href = "#";
-    art.appendChild(back);
-    art.appendChild(el("h1", null, about ? about.title : "About"));
-    art.appendChild(about ? proseOf(about.body) : el("p", "status", "Add an about.txt file next to index.html to fill this page."));
-    main.replaceChildren(art);
-  }
-
   function draw() {
     if (!ready) return;
     var want = "";
     try { want = decodeURIComponent(location.hash.replace(/^#/, "")); } catch (e) {}
     if (!want) return drawHome();
-    if (want === "about") return drawAbout();
     for (var i = 0; i < pieces.length; i++) {
       if (pieces[i].slug === want) return drawPiece(pieces[i], i);
     }
@@ -239,13 +210,12 @@
     main.replaceChildren(el("p", "status", "That page is not here."), back);
   }
 
-  /* ---------- start ---------- */
   window.addEventListener("hashchange", function () { draw(); window.scrollTo(0, 0); });
 
   if (location.protocol === "file:") {
     main.replaceChildren(
       el("p", "status", "You opened this file straight from your computer, and browsers do not let a page read its neighbouring files that way."),
-      el("p", "status", "Upload the whole folder to a web host and open it from there. HOW-TO.txt explains the steps.")
+      el("p", "status", "Upload the whole folder to a web host and open it from there.")
     );
     return;
   }
@@ -263,13 +233,9 @@
         function (raw) { return parsePiece(slugOf(name), raw); },
         function () { missing.push(name); return null; });
     });
-    jobs.push(getText("about.txt").then(
-      function (raw) { about = parsePiece("about", raw); if (!/^title\s*:/im.test(raw.split(/\n\s*\n/)[0] || "")) about.title = "About"; return null; },
-      function () { return null; }));
     return Promise.all(jobs);
   }).then(function (got) {
     pieces = got.filter(Boolean);
-    // newest first; pieces without a date go to the end, in list order
     pieces.forEach(function (p, i) { p.order = i; });
     pieces.sort(function (a, b) {
       if (a.date && b.date) return b.date - a.date || a.order - b.order;
