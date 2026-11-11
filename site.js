@@ -137,7 +137,7 @@
 
       if (pieces_.length > 1) {
         var sec = el("section", "index");
-        sec.appendChild(el("p", "index-head mono", cat ? "the rest of " + cat.name + ", newest first" : "everything else, newest first"));
+        sec.appendChild(el("p", "index-head mono", cat ? "the rest of " + cat.name + ", newest first" : "Everything else"));
         var ul = el("ul");
         pieces_.slice(1).forEach(function (p) {
           var li = el("li");
