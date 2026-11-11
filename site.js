@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  var WORDS_PER_MINUTE = 200;
   var main = document.getElementById("main");
   var siteName = document.title;
   var pieces = [];     // newest first
@@ -23,13 +22,6 @@
   }
   function slugOf(name) {
     return name.replace(/\.txt$/i, "").trim();
-  }
-  function wordCount(s) {
-    var m = s.trim().match(/\S+/g);
-    return m ? m.length : 0;
-  }
-  function readTime(s) {
-    return Math.max(1, Math.round(wordCount(s) / WORDS_PER_MINUTE)) + " min read";
   }
   function parseDate(s) {
     if (!s) return null;
@@ -65,15 +57,10 @@
       body: body
     };
   }
-  function excerpt(body, n) {
-    var words = body.replace(/^#+\s.*$/gm, "").replace(/\*/g, "").trim().split(/\s+/);
-    return words.length > n ? words.slice(0, n).join(" ") + "…" : words.join(" ");
-  }
   function metaLine(p, long, skipCategory) {
     var bits = [];
     if (p.category && !skipCategory) bits.push(p.category);
     if (p.label) bits.push(p.label);
-    bits.push(readTime(p.body));
     if (p.date) bits.push(showDate(p.date, long));
     return bits.join(" · ");
   }
@@ -146,7 +133,6 @@
       card.href = "#" + encodeURIComponent(first.slug);
       card.appendChild(el("span", "mono", (cat ? "latest in " + cat.name + " · " : "latest · ") + metaLine(first, false, !!cat)));
       card.appendChild(el("h2", null, first.title));
-      card.appendChild(el("p", null, excerpt(first.body, 34)));
       card.appendChild(el("span", "more", "keep reading"));
       out.push(card);
 
