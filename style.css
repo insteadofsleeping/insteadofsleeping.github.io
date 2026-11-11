@@ -60,6 +60,9 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
   text-decoration: none;
 }
 
+.nav { display: flex; gap: 1.2rem; font-family: var(--mono); font-size: .9rem; }
+.nav a { padding: .35rem 0; }
+
 .mono {
   font-family: var(--mono);
   font-size: .86rem;

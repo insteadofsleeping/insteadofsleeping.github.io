@@ -6,6 +6,7 @@
   var siteName = document.title;
   var pieces = [];     // newest first
   var missing = [];    // names in list.txt that could not be loaded
+  var about = null;
   var ready = false;
 
   function el(tag, cls, text) {
@@ -192,11 +193,23 @@
     main.replaceChildren(art);
   }
 
+  function drawAbout() {
+    document.title = "About · " + siteName;
+    var art = el("article", "piece");
+    var back = el("a", "back", "← all writing");
+    back.href = "#";
+    art.appendChild(back);
+    art.appendChild(el("h1", null, about ? about.title : "About"));
+    if (about) art.appendChild(proseOf(about.body));
+    main.replaceChildren(art);
+  }
+
   function draw() {
     if (!ready) return;
     var want = "";
     try { want = decodeURIComponent(location.hash.replace(/^#/, "")); } catch (e) {}
     if (!want) return drawHome();
+    if (want === "about") return drawAbout();
     for (var i = 0; i < pieces.length; i++) {
       if (pieces[i].slug === want) return drawPiece(pieces[i], i);
     }
@@ -233,6 +246,13 @@
         function (raw) { return parsePiece(slugOf(name), raw); },
         function () { missing.push(name); return null; });
     });
+    jobs.push(getText("about.txt").then(
+      function (raw) {
+        about = parsePiece("about", raw);
+        if (!/^title\s*:/i.test(raw)) about.title = "About";
+        return null;
+      },
+      function () { return null; }));
     return Promise.all(jobs);
   }).then(function (got) {
     pieces = got.filter(Boolean);
