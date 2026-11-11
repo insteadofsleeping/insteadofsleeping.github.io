@@ -1,0 +1,10 @@
+Title: Sample list: Small permissions
+Date: 2026-10-21
+Category: Notes
+
+You may leave the party when you are tired.
+You may reread the same book.
+You may start in the middle.
+You may call it finished.
+
+*Replace me with something of yours.*

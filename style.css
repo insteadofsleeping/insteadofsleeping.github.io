@@ -1,0 +1,175 @@
+/* Instead of Sleeping
+   Colors live here. Change a value once and the whole site follows. */
+:root {
+  --sage: #C8D3B8;        /* page background */
+  --ink: #2B3320;         /* main text, deep olive */
+  --olive: #4A5438;       /* quieter text */
+  --rule: #75845F;        /* lines and dots */
+  --violet: #574371;      /* the featured block, blue-leaning purple */
+  --violet-text: #574371; /* purple used for links on sage */
+  --orchid: #7A3F6C;      /* the pinker purple: categories and small details */
+  --on-violet-pink: #EBCDE3; /* pink-lilac details on the featured block */
+  --on-violet: #F3F0FA;   /* text on the featured block */
+  --on-violet-soft: #D9D3EC;
+
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --mono: "Courier Prime", "Courier New", Courier, monospace;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--sage);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.6;
+}
+a { color: var(--violet-text); text-underline-offset: 3px; }
+a:hover { color: var(--orchid); }
+:focus-visible { outline: 2px solid var(--violet-text); outline-offset: 3px; }
+
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3.25rem) clamp(1.1rem, 5vw, 2.5rem) 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
+
+/* ---------- top ---------- */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: .4rem 1.5rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: .8rem;
+}
+.name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 8vw, 3rem);
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav { display: flex; gap: 1.2rem; font-family: var(--mono); font-size: .9rem; }
+.nav a { padding: .35rem 0; }
+
+/* ---------- small typewriter text ---------- */
+.mono {
+  font-family: var(--mono);
+  font-size: .86rem;
+  line-height: 1.4;
+  text-transform: lowercase;
+}
+.status { font-family: var(--mono); font-size: .9rem; color: var(--olive); margin: 0; }
+.status + .status { margin-top: .6rem; }
+
+/* ---------- categories ---------- */
+.cats { display: flex; flex-wrap: wrap; gap: .2rem 1.3rem; font-size: .92rem; }
+.cats a { padding: .4rem 0; color: var(--ink); text-decoration: none; border-bottom: 2px solid transparent; }
+.cats a:hover { color: var(--orchid); }
+.cats a.on { color: var(--orchid); font-weight: 700; border-bottom-color: var(--orchid); }
+
+/* ---------- latest piece ---------- */
+.latest {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  background: var(--violet);
+  color: var(--on-violet);
+  padding: clamp(1.4rem, 5vw, 2.3rem) clamp(1.2rem, 5vw, 2.3rem);
+  text-decoration: none;
+}
+.latest:hover { color: var(--on-violet); }
+.latest .mono { color: var(--on-violet-pink); }
+.latest h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 6.5vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.latest p { margin: 0; font-size: 1.05rem; line-height: 1.5; overflow-wrap: anywhere; }
+.latest .more { font-family: var(--mono); font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- the plain index ---------- */
+.index { display: flex; flex-direction: column; gap: .2rem; }
+.index-head { color: var(--olive); margin: 0 0 .5rem; }
+.index ul { list-style: none; margin: 0; padding: 0; }
+.index li a {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  padding: .55rem 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.index .t {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.index li a:hover .t { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.index .dots { flex: 1 1 1.5rem; min-width: 1.5rem; border-bottom: 2px dotted var(--rule); transform: translateY(-.3em); }
+.index .m { color: var(--orchid); white-space: nowrap; }
+
+/* ---------- reading a piece ---------- */
+.piece { display: flex; flex-direction: column; gap: 1.1rem; }
+.back { font-family: var(--mono); font-size: .9rem; align-self: flex-start; padding: .3rem 0; }
+.piece .mono { color: var(--orchid); margin: 0; }
+.piece h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2rem, 7.5vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.prose { max-width: 34rem; font-size: clamp(1.08rem, 2.6vw, 1.2rem); line-height: 1.7; }
+.prose p { margin: 0 0 1.15em; white-space: pre-wrap; overflow-wrap: anywhere; }
+.prose h2 { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin: 1.6em 0 .5em; }
+.around {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .6rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  font-family: var(--mono);
+  font-size: .9rem;
+}
+.around a { max-width: 100%; overflow-wrap: anywhere; padding: .3rem 0; }
+
+/* ---------- bottom ---------- */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--olive);
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 560px) {
+  body { font-size: 18px; }
+  .index li a { flex-direction: column; gap: .1rem; padding: .7rem 0; border-bottom: 2px dotted var(--rule); }
+  .index .dots { display: none; }
+  .index .m { white-space: normal; }
+}
