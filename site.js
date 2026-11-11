@@ -133,7 +133,6 @@
       card.href = "#" + encodeURIComponent(first.slug);
       card.appendChild(el("span", "mono", (cat ? "latest in " + cat.name + " · " : "latest · ") + metaLine(first, false, !!cat)));
       card.appendChild(el("h2", null, first.title));
-      card.appendChild(el("span", "more", "keep reading"));
       out.push(card);
 
       if (pieces_.length > 1) {
