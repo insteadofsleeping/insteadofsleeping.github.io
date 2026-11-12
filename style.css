@@ -12,7 +12,7 @@
 
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
-  --mono: "Courier Prime", "Courier New", Courier, monospace;
+  --mono: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   color-scheme: light;
 }
 
@@ -156,3 +156,5 @@ main { display: flex; flex-direction: column; gap: clamp(1.6rem, 4vw, 2.2rem); }
   .index .dots { display: none; }
   .index .m { white-space: normal; }
 }
+html { font-size: 92%; }
+.mono, .nav, .status, .back, .around, .cats { font-size: .95rem; }
